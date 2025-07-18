@@ -1,5 +1,5 @@
 :root {
-  --base-color: hsl(127, 5, 9);
+  --base-color: #464E47;
   --base-color-light: hsl(from var(--base-color) h s calc(l + 10)); 
   --base-color-lighter: hsl(from var(--base-color) h s calc(l + 20));
   --base-color-dark: hsl(from var(--base-color) h s calc(l - 5));
@@ -43,4 +43,34 @@
   padding: 0;
   line-height: 1.5;
   font-size: 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background: var(--base-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 25%; 
+  transition: all 0.2s ease-in-out;
+}
+
+.clock-container {
+  background: var(--base-color-darker);
+  text-align: center;
+}
+
+.clock-flex {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
 }
