@@ -1,1 +1,1 @@
-# digital-clock-app
+# 🕒 Digital Clock App - Learning Project
