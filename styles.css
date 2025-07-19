@@ -67,6 +67,10 @@ body {
   padding: var(--spacing-sm);
 }
 
+.button:hover {
+  background-color: hsl(from var(--base-color-darker) h s l / 0.5);
+}
+
 .clock-actions {
   display: flex;
   justify-content: space-between;
@@ -75,7 +79,11 @@ body {
 
 .clock-controls {
   display: inline-flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-sm);
+}
+
+.digital-clock.active {
+  color: #ffffff;
 }
 
 .clock-container {
