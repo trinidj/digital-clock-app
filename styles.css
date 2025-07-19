@@ -9,7 +9,7 @@
   --accent-color-light: hsl(from var(--accent-color) h s calc(l + 10));
   --accent-color-dark: hsl(from var(--accent-color) h s calc(l + 20));
 
-  --text-color: hsl(159, 100, 97);
+  --text-color: #ffffff;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -62,15 +62,52 @@ body {
   align-items: center;
   border-radius: 25%; 
   transition: all 0.2s ease-in-out;
+  color: hsl(from #ffffff h s calc(l - 10) / 0.5);
+  background-color: hsl(from var(--base-color-dark) h s l / 0.5);
+  padding: var(--spacing-sm);
+}
+
+.clock-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+}
+
+.clock-controls {
+  display: inline-flex;
+  gap: var(--spacing-xs);
 }
 
 .clock-container {
   background: var(--base-color-darker);
   text-align: center;
+  border: 1px solid var(--base-color-light);
+  padding: var(--spacing-2xl) var(--spacing-4xl);
+  border-radius: 15px;
 }
 
 .clock-flex {
   display: flex;
   gap: var(--spacing-sm);
   justify-content: center;
+}
+
+.time {
+  color: var(--text-color);
+  font-size: var(--text-6xl);
+}
+
+.date-container,
+.clock-flex {
+  margin-bottom: var(--spacing-base);
+}
+
+.date-container,
+.timezone-container {
+  color: hsl(from var(--text-color) h s calc(l - 10) / 0.5);
+}
+
+.date,
+.timezone {
+  font-size: var(--text-lg);
 }
