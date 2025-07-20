@@ -25,6 +25,26 @@ setInterval(() => {
   updateDisplay();
 }, 1000);
 
+const clockControls = document.querySelector('.clock-controls');
+clockControls.addEventListener('click', e => {
+  const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
+
+  if (button) {
+    const controlButtons = clockControls.querySelectorAll('.button');
+    controlButtons.forEach(button => button.classList.remove('active'));
+
+    button.classList.toggle('active');
+
+    const isActive = button.classList.contains('active');
+    button.dataset.state = isActive;
+  }
+});
+
+const settings = document.querySelector('.settings');
+settings.addEventListener('click', () => {
+  settings.classList.toggle('active');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
 
