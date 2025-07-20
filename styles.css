@@ -98,6 +98,7 @@ body {
   display: flex;
   gap: var(--spacing-sm);
   justify-content: center;
+  align-items: center;
 }
 
 .time {
@@ -118,4 +119,9 @@ body {
 .date,
 .timezone {
   font-size: var(--text-lg);
+}
+
+.separator {
+  font-size: var(--text-3xl);
+  color:hsl(from var(--text-color) h s calc(l - 10) / 0.5);
 }
