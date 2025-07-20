@@ -5,6 +5,7 @@ const dateDisplay = document.querySelector('.date-display');
 const hourDisplay = document.querySelector('.hours');
 const minuteDisplay = document.querySelector('.minutes');
 const secondDisplay = document.querySelector('.seconds');
+const timezoneDisplay = document.querySelector('.timezone-display');
 
 const updateDisplay = () => {
   const [ hours, minutes, seconds ] = clockManager.formatTime();
@@ -14,6 +15,8 @@ const updateDisplay = () => {
   minuteDisplay.innerHTML = minutes;
   secondDisplay.innerHTML = seconds;
 };
+
+timezoneDisplay.innerHTML = clockManager.getTimezone();
 
 updateDisplay();
 
