@@ -5,24 +5,34 @@ const dateDisplay = document.querySelector('.date-display');
 const hourDisplay = document.querySelector('.hours');
 const minuteDisplay = document.querySelector('.minutes');
 const secondDisplay = document.querySelector('.seconds');
+const periodDisplay = document.querySelector('.period');
 const timezoneDisplay = document.querySelector('.timezone-display');
 
-const updateDisplay = () => {
-  const [ hours, minutes, seconds ] = clockManager.formatTime();
+  let is24Hour = false
+
+const updateDisplay = (is24Hour) => {
+  const [ hours, minutes, seconds, period ] = clockManager.formatTime(is24Hour);
 
   dateDisplay.innerHTML = clockManager.formatDate();
   hourDisplay.innerHTML = hours;
   minuteDisplay.innerHTML = minutes;
   secondDisplay.innerHTML = seconds;
+
+  if (!is24Hour && periodDisplay) {
+    periodDisplay.innerHTML = period;
+    periodDisplay.style.display = 'block';
+  } else if (periodDisplay) {
+    periodDisplay.style.display = 'none';
+  }
 };
 
 timezoneDisplay.innerHTML = clockManager.getTimezone();
 
-updateDisplay();
+updateDisplay(is24Hour);
 
 setInterval(() => {
   clockManager.updateTime();
-  updateDisplay();
+  updateDisplay(is24Hour);
 }, 1000);
 
 const clockControls = document.querySelector('.clock-controls');
@@ -48,7 +58,6 @@ settings.addEventListener('click', () => {
   formatControls.classList.toggle('show');
 });
 
-
 const formatControls = document.querySelector('.right-controls');
 formatControls.addEventListener('click', e => {
   const button = e.target.classList.contains('format-button') ? e.target : e.target.closest('.format-button');
@@ -61,6 +70,13 @@ formatControls.addEventListener('click', e => {
 
     const isActive = button.classList.contains('active');
     button.dataset.state = isActive;
+
+    if (e.target.classList.contains('format-24h')) {
+      updateDisplay(is24Hour = true);
+
+    } else if (e.target.classList.contains('format-12h')) {
+      updateDisplay(is24Hour = false);
+    }
   }
 });
 
