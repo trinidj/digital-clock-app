@@ -41,8 +41,11 @@ clockControls.addEventListener('click', e => {
 });
 
 const settings = document.querySelector('.settings');
+const formatContainer = document.querySelector('.right-controls');
 settings.addEventListener('click', () => {
   settings.classList.toggle('active');
+
+  formatContainer.classList.toggle('show');
 });
 
 document.addEventListener('DOMContentLoaded', () => {
