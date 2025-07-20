@@ -54,6 +54,10 @@ body {
   justify-content: center;
 }
 
+nav {
+  display: flex;
+}
+
 .format-button,
 .button {
   background: none;
@@ -61,6 +65,14 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.button {
+  border-radius: 25%; 
+  transition: all 0.2s ease-in-out;
+  color: hsl(from #ffffff h s calc(l - 10) / 0.5);
+  background-color: hsl(from var(--base-color-dark) h s l / 0.5);
+  padding: var(--spacing-sm);
 }
 
 .format-button {
@@ -74,21 +86,14 @@ body {
   color: #ffffff;
 }
 
-.button {
-  border-radius: 25%; 
-  transition: all 0.2s ease-in-out;
-  color: hsl(from #ffffff h s calc(l - 10) / 0.5);
-  background-color: hsl(from var(--base-color-dark) h s l / 0.5);
-  padding: var(--spacing-sm);
-}
-
 .button:hover {
   background-color: hsl(from var(--base-color-darker) h s l / 0.5);
 }
 
-.clock-actions {
+.clock-navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -108,6 +113,7 @@ body {
 .digital-stopwatch:active {
   transform: scale(0.85);
 }
+
 
 .clock-container {
   background: var(--base-color-darker);
