@@ -25,6 +25,10 @@ export class ClockManager {
     ]
   }
 
+  getTimezone = () => {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  }
+
   updateTime = () => {
     this.date = new Date();
     this.hours = this.date.getHours();
