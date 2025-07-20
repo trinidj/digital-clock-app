@@ -40,18 +40,37 @@ clockControls.addEventListener('click', e => {
   }
 });
 
+
 const settings = document.querySelector('.settings');
-const formatContainer = document.querySelector('.right-controls');
 settings.addEventListener('click', () => {
   settings.classList.toggle('active');
 
-  formatContainer.classList.toggle('show');
+  formatControls.classList.toggle('show');
 });
+
+
+const formatControls = document.querySelector('.right-controls');
+formatControls.addEventListener('click', e => {
+  const button = e.target.classList.contains('format-button') ? e.target : e.target.closest('.format-button');
+
+  if (button) {
+    const formatButtons = formatControls.querySelectorAll('.format-button');
+    formatButtons.forEach(button => button.classList.remove('active'));
+
+    button.classList.toggle('active');
+
+    const isActive = button.classList.contains('active');
+    button.dataset.state = isActive;
+  }
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
+  const timeFormat = document.querySelector('.format-24h');
 
-  if (clockButton) {
+  if (clockButton && timeFormat) {
     clockButton.classList.toggle('active');
+    timeFormat.classList.toggle('active');
   }
-})
+});
