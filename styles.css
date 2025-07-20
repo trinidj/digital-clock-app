@@ -83,10 +83,7 @@ body {
 }
 
 .digital-clock.active,
-.settings.active {
-  color: #ffffff;
-}
-
+.settings.active,
 .digital-timer.active {
   color: #ffffff;
 }
