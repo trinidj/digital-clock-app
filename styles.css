@@ -54,12 +54,26 @@ body {
   justify-content: center;
 }
 
+.format-button,
 .button {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.format-button {
+  color: #ffffff;
+  color: hsl(from #ffffff h s l / 0.5);
+  transition: all 0.1s ease;
+}
+
+.format-button:hover {
+  color: #ffffff;
+}
+
+.button {
   border-radius: 25%; 
   transition: all 0.2s ease-in-out;
   color: hsl(from #ffffff h s calc(l - 10) / 0.5);
@@ -86,6 +100,12 @@ body {
 .settings.active,
 .digital-timer.active {
   color: #ffffff;
+}
+
+.digital-clock:active,
+.settings:active,
+.digital-timer:active {
+  transform: scale(0.85);
 }
 
 .clock-container {
@@ -126,4 +146,18 @@ body {
 .separator {
   font-size: var(--text-3xl);
   color:hsl(from var(--text-color) h s calc(l - 10) / 0.5);
+}
+
+.format-selector-container {
+  display: flex;
+  gap: var(--spacing-base);
+  background: hsl(from var(--base-color-darker) h s l / 0.5);
+  padding: var(--spacing-sm) var(--spacing-base);
+  border-radius: 10px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.right-controls {
+  display: flex;
+  justify-content: right;
 }
