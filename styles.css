@@ -64,7 +64,8 @@ body {
 }
 
 .format-button {
-  color: #ffffff;
+  font-size: var(--text-lg);
+  font-weight: 500;
   color: hsl(from #ffffff h s l / 0.5);
   transition: all 0.1s ease;
 }
@@ -159,5 +160,15 @@ body {
 
 .right-controls {
   display: flex;
+  top: -60px;
   justify-content: right;
+  opacity: 0;
+  transition: all 0.2s ease;
+  transform: translateY(0.2rem);
+}
+
+.right-controls.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
