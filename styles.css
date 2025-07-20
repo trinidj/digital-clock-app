@@ -99,13 +99,13 @@ body {
 
 .digital-clock.active,
 .settings.active,
-.digital-timer.active {
+.digital-stopwatch.active {
   color: #ffffff;
 }
 
 .digital-clock:active,
 .settings:active,
-.digital-timer:active {
+.digital-stopwatch:active {
   transform: scale(0.85);
 }
 
@@ -156,6 +156,11 @@ body {
   padding: var(--spacing-sm) var(--spacing-base);
   border-radius: 10px;
   margin-bottom: var(--spacing-xs);
+}
+
+.format-12h.active,
+.format-24h.active {
+  color: #ffffff;
 }
 
 .right-controls {
