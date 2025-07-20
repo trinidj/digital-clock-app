@@ -17,12 +17,24 @@ export class ClockManager {
     });
   }
 
-  formatTime = () => {
-    return [
-      this.hours.toString().padStart(2, '0'),
-      this.minutes.toString().padStart(2, '0'),
-      this.seconds.toString().padStart(2, '0'),
-    ]
+  formatTime = (is24Hour) => {
+    if (is24Hour) {
+      return [
+        this.hours.toString().padStart(2, '0'),
+        this.minutes.toString().padStart(2, '0'),
+        this.seconds.toString().padStart(2, '0'),
+      ]
+    } else {
+      const period = this.hours >= 12 ? 'PM' : 'AM';
+      const displayHours = this.hours === 0 ? 12 : this.hours > 12 ? this.hours - 12 : this.hours;
+
+      return [
+        displayHours.toString().padStart(2, '0'),
+        this.minutes.toString().padStart(2, '0'),
+        this.seconds.toString().padStart(2, '0'),
+        period
+      ]
+    }
   }
 
   getTimezone = () => {
