@@ -82,7 +82,12 @@ body {
   gap: var(--spacing-sm);
 }
 
-.digital-clock.active {
+.digital-clock.active,
+.settings.active {
+  color: #ffffff;
+}
+
+.digital-timer.active {
   color: #ffffff;
 }
 
