@@ -20,3 +20,19 @@ This project helped me develop skills in:
 
 ## 🛠️ Built With
 - HTML/CSS/JavaScript
+
+## 🚀 Installation & Setup
+
+### Prerequisites 
+
+- [Node.js](https://nodejs.org/) (version 16 or higher)
+- [Git](https://git-scm.com/)
+- [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+### Cloning Process
+
+1. **Clone Repository**
+  ```
+  git clone https://github.com/trinidj/digital-clock-app.git
+  cd digital-clock-app
+  ```
