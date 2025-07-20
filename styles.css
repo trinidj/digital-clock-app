@@ -69,7 +69,7 @@ nav {
 
 .button {
   border-radius: 25%; 
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease;
   color: hsl(from #ffffff h s calc(l - 10) / 0.5);
   background-color: hsl(from var(--base-color-dark) h s l / 0.5);
   padding: var(--spacing-sm);
@@ -182,4 +182,18 @@ nav {
   transform: translateY(0);
   opacity: 1;
   visibility: visible;
+}
+
+.seconds,
+.period {
+  color: hsl(from #ffffff h s l / 0.5);
+}
+
+.seconds {
+  font-size: var(--text-5xl);
+}
+
+.period {
+  font-size: var(--text-3xl);
+  margin-left: var(--spacing-base);
 }
