@@ -112,7 +112,9 @@ body {
 
 .digital-clock:active,
 .settings:active,
-.digital-stopwatch:active {
+.digital-stopwatch:active,
+.stopwatch-toggle:active,
+.stopwatch-reset:active {
   transform: scale(0.85);
 }
 
@@ -132,7 +134,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: var(--spacing-base);
-}
+} 
 
 .time {
   color: var(--text-color);
@@ -218,11 +220,11 @@ body {
   gap: var(--spacing-base);
 }
 
-.stopwatch-start.active {
+.stopwatch-toggle.active {
   color: #ffffff;
 }
 
-.stopwatch-start:hover,
+.stopwatch-toggle:hover,
 .stopwatch-reset:hover {
   background-color: hsl(from var(--base-color-dark) h s calc(l + 20) / 0.5);
 }
