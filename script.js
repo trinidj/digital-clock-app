@@ -3,6 +3,7 @@ import { ClockManager } from "./helpers/ClockManager.js";
 const clockManager = new ClockManager();
 let is24Hour = true;
 const UPDATE_INTERVAL = 1000;
+const mainContainer = document.querySelector('.main-container');
 
 const timeElements = {
   hour: document.querySelector('.hours'),
@@ -38,6 +39,10 @@ function updateClockDisplay() {
   }
 }
 
+function switchContent(content) {
+  
+}
+
 displayElements.timezone.innerHTML = clockManager.getTimezone();
 
 updateClockDisplay();
@@ -58,6 +63,12 @@ controlElements.clockControls.addEventListener('click', e => {
 
     const isActive = button.classList.contains('active');
     button.dataset.state = isActive;
+
+    let content = '';
+    if (e.target.classList.contains('.clock-section')) {
+      content = 'clock';
+      switchContent(content);
+    }
   }
 });
 
