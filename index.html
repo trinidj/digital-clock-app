@@ -49,20 +49,20 @@
         </div>
 
         <div class="clock-flex">
-          <div class="time hours">
+          <div class="time clock-hours">
             <!-- Hours -->
           </div>         
 
           <div class="separator">:</div>
 
-          <div class="time minutes">
+          <div class="time clock-minutes">
             <!-- Minutes -->
           </div>
 
           <div class="separator">:</div>
 
 
-          <div class="time seconds">
+          <div class="time clock-seconds">
             <!-- Seconds -->
           </div>
 
@@ -79,7 +79,33 @@
       </section>
 
       <section class="stopwatch-section">
-        <p>Stopwatch Section</p>
+        <div class="stopwatch-flex">
+          <div class="time stopwatch-minutes">
+            00
+          </div>
+          
+          <div class="separator">:</div>
+
+          <div class="time stopwatch-seconds">
+            00  
+          </div>
+
+          <div class="separator">:</div>
+
+          <div class="time stopwatch-milliseconds">
+            00
+          </div>
+        </div>
+
+        <div class="stopwatch-actions">
+          <button class="button stopwatch-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </button>
+
+          <button class="button stopwatch-reset">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+        </div>
       </section>
     </div>
   </main>
