@@ -58,7 +58,7 @@ body {
 .content-navigation {
   display: flex;
   margin-bottom: var(--spacing-sm);
-  justify-content: center;
+  justify-content: left;
 }
 
 .content-controls {
@@ -66,9 +66,13 @@ body {
   gap: var(--spacing-sm);
 }
 
-.clock-settings {
+.clock-settings.show {
   display: flex;
   margin-left: auto;
+}
+
+.clock-settings.hidden {
+  display: none;
 }
 
 .format-button,
