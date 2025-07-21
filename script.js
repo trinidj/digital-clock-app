@@ -6,6 +6,11 @@ let is24Hour = true;
 let isPlaying = false;
 const UPDATE_INTERVAL = 1000;
 
+const contentElements = {
+  clock: document.querySelector('.clock-section'),
+  stopwatch: document.querySelector('.stopwatch-section'),
+}
+
 const timeElements = {
   clock: {
     hour: document.querySelector('.clock-hours'),
@@ -57,6 +62,23 @@ function updateClockDisplay() {
   }
 }
 
+function switchContent(content) {
+  switch (content) {
+    case 'clock':
+      contentElements.clock.classList.add('show');
+      contentElements.stopwatch.classList.remove('show')
+      contentElements.stopwatch.classList.add('hidden');
+      break;
+    case 'stopwatch':
+      contentElements.stopwatch.classList.add('show');
+      contentElements.clock.classList.remove('show')
+      contentElements.clock.classList.add('hidden');
+    default:
+      content = 'clock';
+      break;
+  }
+}
+
 displayElements.timezone.innerHTML = clockManager.getTimezone();
 
 updateClockDisplay();
@@ -78,9 +100,14 @@ controlElements.contentControls.addEventListener('click', e => {
     const isActive = button.classList.contains('active');
     button.dataset.state = isActive;
 
-    let content = '';
-    if (e.target.classList.contains('.clock-section')) {
-      content = 'clock';
+    let content = 'clock';
+    if (button.classList.contains('digital-clock')) {
+      console.log("Clock Pressed");
+      switchContent(content);
+    } else if (button.classList.contains('digital-stopwatch')) {
+      console.log("Stopwatch Pressed");
+
+      content = 'stopwatch';
       switchContent(content);
     }
   }
@@ -130,6 +157,8 @@ controlElements.stopwatch.controls.addEventListener('click', e => {
     }
   }
 });
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
