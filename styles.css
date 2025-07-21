@@ -186,7 +186,6 @@ body {
 .right-controls.show {
   transform: translateY(0);
   opacity: 1;
-  visibility: visible;
 }
 
 .clock-seconds,
@@ -220,10 +219,12 @@ body {
   background-color: hsl(from var(--base-color-dark) h s calc(l + 20) / 0.5);
 }
 
-.hidden {
+.clock-section.hidden,
+.stopwatch-section.hidden {
   display: none;
 }
 
-.show {
+.clock-section.show,
+.stopwatch-section.show {
   display: block;
 }
