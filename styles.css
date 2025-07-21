@@ -69,7 +69,7 @@ nav {
 
 .button {
   border-radius: 25%; 
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   color: hsl(from #ffffff h s calc(l - 10) / 0.5);
   background-color: hsl(from var(--base-color-dark) h s l / 0.5);
   padding: var(--spacing-sm);
@@ -123,11 +123,13 @@ nav {
   border-radius: 15px;
 }
 
-.clock-flex {
+.clock-flex,
+.stopwatch-flex {
   display: flex;
   gap: var(--spacing-sm);
   justify-content: center;
   align-items: center;
+  margin-bottom: var(--spacing-base);
 }
 
 .time {
@@ -184,12 +186,14 @@ nav {
   visibility: visible;
 }
 
-.seconds,
+.clock-seconds,
+.stopwatch-milliseconds,
 .period {
   color: hsl(from #ffffff h s l / 0.5);
 }
 
-.seconds {
+.clock-seconds,
+.stopwatch-milliseconds {
   font-size: var(--text-5xl);
 }
 
@@ -204,4 +208,15 @@ nav {
 
 .clock-section.active {
   display: block;
+}
+
+.stopwatch-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-base);
+}
+
+.stopwatch-start:hover,
+.stopwatch-reset:hover {
+  background-color: hsl(from var(--base-color-dark) h s calc(l + 20) / 0.5);
 }
