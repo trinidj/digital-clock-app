@@ -64,7 +64,6 @@ body {
 .content-controls {
   display: flex;
   gap: var(--spacing-sm);
-  margin-right: auto; /* Push to left edge */
 }
 
 .clock-settings {
@@ -206,14 +205,6 @@ body {
   margin-left: var(--spacing-base);
 }
 
-.clock-section {
-  display: none;
-}
-
-.clock-section.show {
-  display: block;
-}
-
 .stopwatch-controls {
   display: flex;
   justify-content: center;
@@ -227,4 +218,12 @@ body {
 .stopwatch-toggle:hover,
 .stopwatch-reset:hover {
   background-color: hsl(from var(--base-color-dark) h s calc(l + 20) / 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
 }
