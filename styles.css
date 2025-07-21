@@ -115,7 +115,7 @@ nav {
 }
 
 
-.clock-container {
+.main-container {
   background: var(--base-color-darker);
   text-align: center;
   border: 1px solid var(--base-color-light);
@@ -196,4 +196,12 @@ nav {
 .period {
   font-size: var(--text-3xl);
   margin-left: var(--spacing-base);
+}
+
+.clock-section {
+  display: none;
+}
+
+.clock-section.active {
+  display: block;
 }
