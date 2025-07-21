@@ -3,13 +3,20 @@ import { ClockManager } from "./helpers/ClockManager.js";
 const clockManager = new ClockManager();
 let is24Hour = true;
 const UPDATE_INTERVAL = 1000;
-const mainContainer = document.querySelector('.main-container');
 
 const timeElements = {
-  hour: document.querySelector('.hours'),
-  minutes: document.querySelector('.minutes'),
-  seconds: document.querySelector('.seconds'),
-  period: document.querySelector('.period'),
+  clock: {
+    hour: document.querySelector('.clock-hours'),
+    minutes: document.querySelector('.clock-minutes'),
+    seconds: document.querySelector('.clock-seconds'),
+    period: document.querySelector('.period'),
+  },
+
+  stopwatch: {
+    minutes: document.querySelector('.stopwatch-minutes'),
+    seconds: document.querySelector('.stopwatch-seconds'),
+    milliseconds: document.querySelector('.stopwatch-milliseconds'),
+  },
 }
 
 const displayElements = {
@@ -18,29 +25,34 @@ const displayElements = {
 }
 
 const controlElements = {
-  clockControls: document.querySelector('.clock-controls'),
-  settings: document.querySelector('.settings'),
-  formatControls: document.querySelector('.right-controls'),
+  contentControls: document.querySelector('.content-controls'),
+
+  clock: {
+    settings: document.querySelector('.settings'),
+    formatControls: document.querySelector('.right-controls'),
+  },
+
+  stopwatch: {
+    controls: document.querySelector('.stopwatch-controls'),
+    start: document.querySelector('.stopwatch-start'),
+    reset: document.querySelector('.stopwatch-reset'),
+  }
 }
 
 function updateClockDisplay() {
   const [ hours, minutes, seconds, period ] = clockManager.formatTime(is24Hour);
 
   displayElements.date.innerHTML = clockManager.formatDate();
-  timeElements.hour.innerHTML = hours;
-  timeElements.minutes.innerHTML = minutes;
-  timeElements.seconds.innerHTML = seconds;
+  timeElements.clock.hour.innerHTML = hours;
+  timeElements.clock.minutes.innerHTML = minutes;
+  timeElements.clock.seconds.innerHTML = seconds;
 
   if (!is24Hour) {
-    timeElements.period.innerHTML = period;
-    timeElements.period.style.display = 'block';
+    timeElements.clock.period.innerHTML = period;
+    timeElements.clock.period.style.display = 'block';
   } else {
-    timeElements.period.style.display = 'none';
+    timeElements.clock.period.style.display = 'none';
   }
-}
-
-function switchContent(content) {
-  
 }
 
 displayElements.timezone.innerHTML = clockManager.getTimezone();
@@ -52,11 +64,11 @@ setInterval(() => {
   updateClockDisplay();
 }, UPDATE_INTERVAL);
 
-controlElements.clockControls.addEventListener('click', e => {
+controlElements.contentControls.addEventListener('click', e => {
   const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
 
   if (button) {
-    const controlButtons = controlElements.clockControls.querySelectorAll('.button');
+    const controlButtons = controlElements.contentControls.querySelectorAll('.button');
     controlButtons.forEach(button => button.classList.remove('active'));
 
     button.classList.toggle('active');
@@ -72,17 +84,17 @@ controlElements.clockControls.addEventListener('click', e => {
   }
 });
 
-controlElements.settings.addEventListener('click', () => {
-  controlElements.settings.classList.toggle('active');
+controlElements.clock.settings.addEventListener('click', () => {
+  controlElements.clock.settings.classList.toggle('active');
 
-  controlElements.formatControls.classList.toggle('show');
+  controlElements.clock.formatControls.classList.toggle('show');
 });
 
-controlElements.formatControls.addEventListener('click', e => {
+controlElements.clock.formatControls.addEventListener('click', e => {
   const button = e.target.classList.contains('format-button') ? e.target : e.target.closest('.format-button');
 
   if (button) {
-    const formatButtons = controlElements.formatControls.querySelectorAll('.format-button');
+    const formatButtons = controlElements.clock.formatControls.querySelectorAll('.format-button');
     formatButtons.forEach(button => button.classList.remove('active'));
 
     button.classList.toggle('active');
@@ -100,6 +112,17 @@ controlElements.formatControls.addEventListener('click', e => {
     }
   }
 });
+
+controlElements.stopwatch.controls.addEventListener('click', e => {
+  const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
+
+  if (button) {
+    button.classList.toggle('active');
+  }
+});
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
