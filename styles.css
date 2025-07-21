@@ -52,10 +52,24 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-nav {
+.content-navigation {
   display: flex;
+  margin-bottom: var(--spacing-sm);
+  justify-content: center;
+}
+
+.content-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-right: auto; /* Push to left edge */
+}
+
+.clock-settings {
+  display: flex;
+  margin-left: auto;
 }
 
 .format-button,
@@ -90,18 +104,6 @@ nav {
   background-color: hsl(from var(--base-color-darker) h s l / 0.5);
 }
 
-.clock-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-}
-
-.clock-controls {
-  display: inline-flex;
-  gap: var(--spacing-sm);
-}
-
 .digital-clock.active,
 .settings.active,
 .digital-stopwatch.active {
@@ -115,7 +117,7 @@ nav {
 }
 
 
-.main-container {
+.content-container {
   background: var(--base-color-darker);
   text-align: center;
   border: 1px solid var(--base-color-light);
@@ -206,14 +208,18 @@ nav {
   display: none;
 }
 
-.clock-section.active {
+.clock-section.show {
   display: block;
 }
 
-.stopwatch-actions {
+.stopwatch-controls {
   display: flex;
   justify-content: center;
   gap: var(--spacing-base);
+}
+
+.stopwatch-start.active {
+  color: #ffffff;
 }
 
 .stopwatch-start:hover,
