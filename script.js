@@ -63,22 +63,15 @@ function updateClockDisplay() {
 }
 
 function switchContent(content) {
-  switch (content) {
-    case 'clock':
-      contentElements.clock.classList.add('show');
-      contentElements.stopwatch.classList.remove('show')
-      contentElements.stopwatch.classList.add('hidden');
-      break;
-    case 'stopwatch':
-      contentElements.stopwatch.classList.add('show');
-      contentElements.clock.classList.remove('show')
-      contentElements.clock.classList.add('hidden');
-    default:
-      content = 'clock';
-      break;
-  }
-}
+  const sections = [ 'clock', 'stopwatch' ];
 
+  sections.forEach(section => {
+    const isActive = section === content;
+
+    contentElements[section].classList.toggle('show', isActive);
+    contentElements[section].classList.toggle('hidden', !isActive);
+  });
+}
 displayElements.timezone.innerHTML = clockManager.getTimezone();
 
 updateClockDisplay();
@@ -158,13 +151,13 @@ controlElements.stopwatch.controls.addEventListener('click', e => {
   }
 });
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
   const timeFormat = document.querySelector('.format-24h');
 
   controlElements.stopwatch.play.innerHTML = svgIcons.play;
+
+  switchContent('clock');
 
   if (clockButton && timeFormat) {
     clockButton.classList.toggle('active');
