@@ -1,48 +1,57 @@
 import { ClockManager } from "./helpers/ClockManager.js";
 
 const clockManager = new ClockManager();
-const dateDisplay = document.querySelector('.date-display');
-const hourDisplay = document.querySelector('.hours');
-const minuteDisplay = document.querySelector('.minutes');
-const secondDisplay = document.querySelector('.seconds');
-const periodDisplay = document.querySelector('.period');
-const timezoneDisplay = document.querySelector('.timezone-display');
-const clockControls = document.querySelector('.clock-controls');
-const settings = document.querySelector('.settings');
-const formatControls = document.querySelector('.right-controls');
-
 let is24Hour = true;
+const UPDATE_INTERVAL = 1000;
+
+const timeElements = {
+  hour: document.querySelector('.hours'),
+  minutes: document.querySelector('.minutes'),
+  seconds: document.querySelector('.seconds'),
+  period: document.querySelector('.period'),
+}
+
+const displayElements = {
+  date: document.querySelector('.date-display'),
+  timezone: document.querySelector('.timezone-display'),
+}
+
+const controlElements = {
+  clockControls: document.querySelector('.clock-controls'),
+  settings: document.querySelector('.settings'),
+  formatControls: document.querySelector('.right-controls'),
+}
 
 function updateClockDisplay() {
   const [ hours, minutes, seconds, period ] = clockManager.formatTime(is24Hour);
 
-  dateDisplay.innerHTML = clockManager.formatDate();  
-  hourDisplay.innerHTML = hours;
-  minuteDisplay.innerHTML = minutes;
-  secondDisplay.innerHTML = seconds;
+  displayElements.date.innerHTML = clockManager.formatDate();
+  timeElements.hour.innerHTML = hours;
+  timeElements.minutes.innerHTML = minutes;
+  timeElements.seconds.innerHTML = seconds;
 
   if (!is24Hour) {
-    periodDisplay.innerHTML = period;
-    periodDisplay.style.display = 'block';
+    timeElements.period.innerHTML = period;
+    timeElements.period.style.display = 'block';
   } else {
-    periodDisplay.style.display = 'none';
+    timeElements.period.style.display = 'none';
   }
-};
+}
 
-timezoneDisplay.innerHTML = clockManager.getTimezone();
+displayElements.timezone.innerHTML = clockManager.getTimezone();
 
-updateClockDisplay(is24Hour);
+updateClockDisplay();
 
 setInterval(() => {
   clockManager.updateTime();
-  updateClockDisplay(is24Hour);
-}, 1000);
+  updateClockDisplay();
+}, UPDATE_INTERVAL);
 
-clockControls.addEventListener('click', e => {
+controlElements.clockControls.addEventListener('click', e => {
   const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
 
   if (button) {
-    const controlButtons = clockControls.querySelectorAll('.button');
+    const controlButtons = controlElements.clockControls.querySelectorAll('.button');
     controlButtons.forEach(button => button.classList.remove('active'));
 
     button.classList.toggle('active');
@@ -52,18 +61,17 @@ clockControls.addEventListener('click', e => {
   }
 });
 
+controlElements.settings.addEventListener('click', () => {
+  controlElements.settings.classList.toggle('active');
 
-settings.addEventListener('click', () => {
-  settings.classList.toggle('active');
-
-  formatControls.classList.toggle('show');
+  controlElements.formatControls.classList.toggle('show');
 });
 
-formatControls.addEventListener('click', e => {
+controlElements.formatControls.addEventListener('click', e => {
   const button = e.target.classList.contains('format-button') ? e.target : e.target.closest('.format-button');
 
   if (button) {
-    const formatButtons = formatControls.querySelectorAll('.format-button');
+    const formatButtons = controlElements.formatControls.querySelectorAll('.format-button');
     formatButtons.forEach(button => button.classList.remove('active'));
 
     button.classList.toggle('active');
@@ -81,7 +89,6 @@ formatControls.addEventListener('click', e => {
     }
   }
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
