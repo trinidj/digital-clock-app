@@ -1,7 +1,9 @@
 import { ClockManager } from "./helpers/ClockManager.js";
+import { svgIcons } from "./helpers/svgIcons.js";
 
 const clockManager = new ClockManager();
 let is24Hour = true;
+let isPlaying = false;
 const UPDATE_INTERVAL = 1000;
 
 const timeElements = {
@@ -34,7 +36,7 @@ const controlElements = {
 
   stopwatch: {
     controls: document.querySelector('.stopwatch-controls'),
-    start: document.querySelector('.stopwatch-start'),
+    play: document.querySelector('.stopwatch-toggle'),
     reset: document.querySelector('.stopwatch-reset'),
   }
 }
@@ -116,17 +118,24 @@ controlElements.clock.formatControls.addEventListener('click', e => {
 controlElements.stopwatch.controls.addEventListener('click', e => {
   const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
 
-  if (button) {
-    button.classList.toggle('active');
+  if (button && button === controlElements.stopwatch.play) {
+    isPlaying = !isPlaying;
+
+    if (isPlaying) {
+      controlElements.stopwatch.play.innerHTML = svgIcons.pause;
+      button.classList.toggle('active');
+    } else {
+      controlElements.stopwatch.play.innerHTML = svgIcons.play;
+      button.classList.toggle('active');
+    }
   }
 });
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const clockButton = document.querySelector('.digital-clock');
   const timeFormat = document.querySelector('.format-24h');
+
+  controlElements.stopwatch.play.innerHTML = svgIcons.play;
 
   if (clockButton && timeFormat) {
     clockButton.classList.toggle('active');
