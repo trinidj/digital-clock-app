@@ -64,12 +64,17 @@ function updateClockDisplay() {
 
 function switchContent(content) {
   const sections = [ 'clock', 'stopwatch' ];
+  const settingsButton = document.querySelector('.clock-settings');
+
 
   sections.forEach(section => {
-    const isActive = section === content;
+    const isActive = section === content; 
 
-    contentElements[section].classList.toggle('show', isActive);
-    contentElements[section].classList.toggle('hidden', !isActive);
+    contentElements[section].classList.toggle('show', isActive);   
+    contentElements[section].classList.toggle('hidden', !isActive); 
+
+    settingsButton.classList.toggle('hidden', isActive);
+    settingsButton.classList.toggle('show', !isActive);
   });
 }
 displayElements.timezone.innerHTML = clockManager.getTimezone();
@@ -95,11 +100,8 @@ controlElements.contentControls.addEventListener('click', e => {
 
     let content = 'clock';
     if (button.classList.contains('digital-clock')) {
-      console.log("Clock Pressed");
       switchContent(content);
     } else if (button.classList.contains('digital-stopwatch')) {
-      console.log("Stopwatch Pressed");
-
       content = 'stopwatch';
       switchContent(content);
     }
