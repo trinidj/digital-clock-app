@@ -43,8 +43,11 @@ export class ClockManager {
 
   updateTime = () => {
     this.date = new Date();
-    this.hours = this.date.getHours();
-    this.minutes = this.date.getMinutes();
-    this.seconds = this.date.getSeconds();
+
+    setInterval(() => {
+      this.hours = this.date.getHours();
+      this.minutes = this.date.getMinutes();
+      this.seconds = this.date.getSeconds();
+    }, 1000);
   }
 }
