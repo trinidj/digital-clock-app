@@ -1,10 +1,13 @@
 import { ClockManager } from "./helpers/ClockManager.js";
+import { StopwatchManager } from "./helpers/StopwatchManager.js";
 import { svgIcons } from "./helpers/svgIcons.js";
 
 const clockManager = new ClockManager();
+const stopwatchManager = new StopwatchManager();
+
 let is24Hour = true;
 let isPlaying = false;
-const UPDATE_INTERVAL = 1000;
+// const UPDATE_CLOCK_INTERVAL = 1000;
 
 const contentElements = {
   clock: document.querySelector('.clock-section'),
@@ -62,6 +65,14 @@ function updateClockDisplay() {
   }
 }
 
+function updateStopwatchDisplay() {
+  const [ minutes, seconds, milliseconds ] = stopwatchManager.formatStopwatchTime();
+
+  timeElements.stopwatch.minutes.innerHTML = minutes;
+  timeElements.stopwatch.seconds.innerHTML = seconds;
+  timeElements.stopwatch.milliseconds.innerHTML = milliseconds;
+}
+
 function switchContent(content) {
   const sections = [ 'clock', 'stopwatch' ];
   const settingsButton = document.querySelector('.clock-settings');
@@ -80,11 +91,16 @@ function switchContent(content) {
 displayElements.timezone.innerHTML = clockManager.getTimezone();
 
 updateClockDisplay();
+updateStopwatchDisplay();
 
 setInterval(() => {
   clockManager.updateTime();
   updateClockDisplay();
-}, UPDATE_INTERVAL);
+});
+
+setInterval(() => {
+  updateStopwatchDisplay();
+});
 
 controlElements.contentControls.addEventListener('click', e => {
   const button = e.target.classList.contains('button') ? e.target : e.target.closest('.button');
@@ -146,10 +162,16 @@ controlElements.stopwatch.controls.addEventListener('click', e => {
     if (isPlaying) {
       controlElements.stopwatch.play.innerHTML = svgIcons.pause;
       button.classList.toggle('active');
+      stopwatchManager.start();
     } else {
       controlElements.stopwatch.play.innerHTML = svgIcons.play;
       button.classList.toggle('active');
+      stopwatchManager.pause();
     }
+  }
+
+  if (button === controlElements.stopwatch.reset) {
+    stopwatchManager.reset();
   }
 });
 
