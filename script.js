@@ -7,7 +7,6 @@ const stopwatchManager = new StopwatchManager();
 
 let is24Hour = true;
 let isPlaying = false;
-// const UPDATE_CLOCK_INTERVAL = 1000;
 
 const contentElements = {
   clock: document.querySelector('.clock-section'),
